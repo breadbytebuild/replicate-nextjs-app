@@ -21,9 +21,16 @@ export async function POST(request) {
   const { prompt } = await request.json();
  
   const options = {
-    version: '8beff3369e81422112d93b89ca01426147de542cd4684c244b673b105188fe5f',
-    input: { prompt }
-  }
+    version: "d89da248f9e8fdba13bd0e0f93daa9a6b51243c6b9c0b0d4d1476ad7d287b9d7",
+    input: { 
+      prompt,
+      num_outputs: 1,
+      guidance_scale: 7.5,
+      num_inference_steps: 50,
+      scheduler: "K_EULER",
+      negative_prompt: ""
+    }
+  };
  
   if (WEBHOOK_HOST) {
     options.webhook = `${WEBHOOK_HOST}/api/webhooks`
